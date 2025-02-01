@@ -13,20 +13,7 @@ class APIController extends Controller
 {
     public function login(Request $request)
     {
-        // $credentials = request(['kodealat', 'passcode']);
 
-        // if (!$token = auth()->attempt($credentials)) {
-        //     return response()->json(['message' => false]);
-        // }
-
-        // return response()->json([
-        //     'message' => true,
-        //     'access_token' => $token,
-        //     'token_type' => 'bearer',
-        //     'expires_in' => auth()->factory()->getTTL() * 60
-        // ]);
-
-        // Validasi input
         $request->validate([
             'kodealat' => 'required|string',
             'pascode' => 'required|string',
@@ -37,23 +24,23 @@ class APIController extends Controller
         $alat = alatabsensiM::where('kodealat', $request->kodealat)->first();
 
         if (!$alat) {
-            return response()->json(['message' => 'Kode alat tidak ditemukan'], 404);
+            return response()->json(['message' => 'error'], 404);
         }
 
         // Cek apakah pascode cocok dengan yang ada di database
         if (!Hash::check($request->pascode, $alat->pascode)) {
-            return response()->json(['message' => 'pascode salah'], 401);
+            return response()->json(['message' => 'error'], 401);
         }
 
         // Jika validasi berhasil, generate JWT
         try {
             $token = JWTAuth::fromUser($alat);
         } catch (JWTException $e) {
-            return response()->json(['message' => 'Tidak bisa membuat token'], 500);
+            return response()->json(['message' => 'error'], 500);
         }
 
         return response()->json([
-            'message' => 'Autentikasi berhasil',
+            'message' => 'success',
             'token' => $token,
         ]);
     }
