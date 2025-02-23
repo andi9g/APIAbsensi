@@ -139,7 +139,7 @@ class APIController extends Controller
 
     public function kelola(Request $request)
     {
-        try{
+        // try{
             $idinstansi = Auth::user()->idinstansi;
             $fungsi = Auth::user()->fungsi;
 
@@ -172,9 +172,9 @@ class APIController extends Controller
                 return response()->json(["message" => "Not Found"], 500);
             }
 
-        }catch(\Throwable $th){
-            return response()->json(["message" => "error"]);
-        }
+        // }catch(\Throwable $th){
+        //     return response()->json(["message" => "error"]);
+        // }
 
 
 
