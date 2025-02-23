@@ -139,40 +139,42 @@ class APIController extends Controller
 
     public function kelola(Request $request)
     {
-        // try{
+        try{
             $idinstansi = Auth::user()->idinstansi;
-
             $fungsi = Auth::user()->fungsi;
 
-            // $instansi2 = instansiM::where("idinstansi", $idinstansi)->count();
-            // dd($instansi2." ".$fungsi);
+            $instansi = instansiM::where("idinstansi", $idinstansi)->count();
+
+
             $jsonData = $request->getContent();
             $data = json_decode($jsonData, true);
-            dd(instansiM::get());
 
-            // if($instansi2 === 1 && $fungsi == "pengelola") {
-            //     $kodealat = Auth::user()->kodealat;
-            //     $bacakartu = bacakartuM::where("idinstansi", $idinstansi)
-            //     ->where("kodealat", $kodealat);
 
-            //     if($bacakartu->count() === 0) {
-            //         $sendData["uuid"] = $data[0]["uuid"];
-            //         $sendData["kodealat"] = $kodealat;
-            //         $sendData["idinstansi"] = $idinstansi;
 
-            //         bacakartuM::create($sendData);
-            //     }else {
-            //         $sendData["uuid"] = $data[0]["uuid"];
-            //         $bacakartu->first()->update($sendData);
-            //     }
-            //     return response()->json(["message" => "success"]);
-            // }else {
-            //     return response()->json(["message" => "Not Found"], 500);
-            // }
 
-        // }catch(\Throwable $th){
-        //     return response()->json(["message" => "error"]);
-        // }
+            if($instansi === 1 && $fungsi == "pengelola") {
+                $kodealat = Auth::user()->kodealat;
+                $bacakartu = bacakartuM::where("idinstansi", $idinstansi)
+                ->where("kodealat", $kodealat);
+
+                if($bacakartu->count() === 0) {
+                    $sendData["uuid"] = $data[0]["uuid"];
+                    $sendData["kodealat"] = $kodealat;
+                    $sendData["idinstansi"] = $idinstansi;
+
+                    bacakartuM::create($sendData);
+                }else {
+                    $sendData["uuid"] = $data[0]["uuid"];
+                    $bacakartu->first()->update($sendData);
+                }
+                return response()->json(["message" => "success"]);
+            }else {
+                return response()->json(["message" => "Not Found"], 500);
+            }
+
+        }catch(\Throwable $th){
+            return response()->json(["message" => "error"]);
+        }
 
 
 
