@@ -145,10 +145,10 @@ class APIController extends Controller
 
             $instansi = instansiM::where("idinstansi", $idinstansi)->count();
 
-
+            dd($instansi." ".$fungsi);
             $jsonData = $request->getContent();
             $data = json_decode($jsonData, true);
-            dd($data);
+
 
 
 
