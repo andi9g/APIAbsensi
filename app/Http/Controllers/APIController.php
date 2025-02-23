@@ -148,6 +148,7 @@ class APIController extends Controller
 
             $jsonData = $request->getContent();
             $data = json_decode($jsonData, true);
+            dd($data);
 
 
 
