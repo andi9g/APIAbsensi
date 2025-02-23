@@ -145,13 +145,9 @@ class APIController extends Controller
 
             $instansi = instansiM::where("idinstansi", $idinstansi)->count();
 
-            dd($instansi." ".$fungsi);
+            // dd($instansi." ".$fungsi);
             $jsonData = $request->getContent();
             $data = json_decode($jsonData, true);
-
-
-
-
 
             if($instansi === 1 && $fungsi == "pengelola") {
                 $kodealat = Auth::user()->kodealat;
