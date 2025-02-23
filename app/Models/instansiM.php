@@ -17,7 +17,6 @@ class instansiM extends Model
     {
         return $this->belongsTo(User::class, 'idinstansi','idinstansi');
     }
-
     public function alatabsensi()
     {
         return $this->belongsTo(alatabsensiM::class, 'idinstansi','idinstansi');
@@ -25,5 +24,13 @@ class instansiM extends Model
     public function siswa()
     {
         return $this->belongsTo(siswaM::class, 'idinstansi','idinstansi');
+    }
+    public function kelolawaktu()
+    {
+        return $this->belongsTo(kelolawaktuM::class, 'idinstansi','idinstansi');
+    }
+    public function kelolalibur()
+    {
+        return $this->belongsTo(kelolaliburM::class, 'idinstansi','idinstansi');
     }
 }

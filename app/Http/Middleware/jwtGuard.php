@@ -23,8 +23,6 @@ class jwtGuard
     {
         try {
             $user = JWTAuth::parseToken()->authenticate();
-            $request->merge(["idinstansi", $user->idinstansi]);
-            // dd($user->idinstansi);
         } catch (TokenExpiredException $e) {
             return response()->json(['message' => 'error']);
         } catch (TokenInvalidException $e) {

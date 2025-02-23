@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class kartupelajarM extends Model
+class absenM extends Model
 {
     use HasFactory;
-    protected $table = 'kartupelajar';
-    protected $primaryKey = 'idkartupelajar';
-    protected $connection = 'mysql2';
-    protected $guarded = [];
+    protected $table = 'absen';
+    protected $primaryKey = 'idabsen';
+    protected $connection = 'mysql';
+    protected $fillable = ["nisn", "tanggal", "jammasuk", "jamkeluar"];
 
     public function siswa()
     {

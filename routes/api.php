@@ -21,7 +21,9 @@ use Illuminate\Support\Facades\Route;
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
 
-    Route::middleware(['auth:api', 'jwtGuard'])->group(function () {
+    Route::middleware(['jwtGuard'])->group(function () {
         Route::post('me', [APIController::class, 'me']);
+        Route::post('kelola', [APIController::class, 'kelola']);
+        Route::post('absensi', [APIController::class, 'absensi']);
     });
 
