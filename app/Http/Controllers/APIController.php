@@ -143,9 +143,9 @@ class APIController extends Controller
             $idinstansi = Auth::user()->idinstansi;
 
             $fungsi = Auth::user()->fungsi;
-            dd($fungsi);
-            $instansi = instansiM::where("idinstansi", $idinstansi)->count();
 
+            $instansi = instansiM::where("idinstansi", $idinstansi)->count();
+            dd($instansi);
             // dd($instansi." ".$fungsi);
             $jsonData = $request->getContent();
             $data = json_decode($jsonData, true);
