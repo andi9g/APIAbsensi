@@ -141,6 +141,7 @@ class APIController extends Controller
     {
         // try{
             $idinstansi = Auth::user()->idinstansi;
+            dd($idinstansi);
             $fungsi = Auth::user()->fungsi;
 
             $instansi = instansiM::where("idinstansi", $idinstansi)->count();
