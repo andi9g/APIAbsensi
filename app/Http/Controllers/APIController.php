@@ -60,6 +60,7 @@ class APIController extends Controller
 
     public function absensi(Request $request)
     {
+
         try{
             $idinstansi = Auth::user()->idinstansi;
             $fungsi = Auth::user()->fungsi;
@@ -76,6 +77,8 @@ class APIController extends Controller
             $data = json_decode($jsonData);
 
             if($instansi === 1 && $fungsi == "absensi") {
+                $suc = 0;
+                $err =0;
                 foreach ($data as $value) {
 
                     $jamabsen = $value->waktu;
@@ -88,6 +91,12 @@ class APIController extends Controller
                     })->first();
 
 
+                    if(is_null($cekkartu)) {
+                        $err = $err + 1;
+                        continue;
+                    }
+
+
                     //cek absensi hari ini ===========================================
                     $absen = absenM::with("siswa")
                     ->where("nisn", $cekkartu->siswa->nisn)
@@ -95,7 +104,6 @@ class APIController extends Controller
                         $query->from("siswa.siswa")
                         ->where("idinstansi", $idinstansi);
                     })->where("tanggal", $tanggal);
-
 
                     // PROSES ========================================================
                     if($value->waktu < strtotime($hari)) {
@@ -121,6 +129,8 @@ class APIController extends Controller
                         }
                     }
 
+
+
                 } //ini tutup foreach
 
                 return response()->json(["message" => "success"]);
@@ -129,9 +139,11 @@ class APIController extends Controller
                 return response()->json(["message" => "Not Found"], 500);
 
             }
+
         }catch(\Throwable $th){
-            return response()->json(["message" => "error"]);
+            return redirect()->back()->with('toast_error', 'Terjadi kesalahan');
         }
+
 
 
         // return strtoupper($hasil);
