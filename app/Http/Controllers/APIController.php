@@ -87,7 +87,7 @@ class APIController extends Controller
 
                     //CEK KARTU ======================================================
                     $cekkartu = kartupelajarM::with("siswa")
-                    ->where("uuid", $value->uuid)
+                    ->where("uuid", strval($value->uuid))
                     ->whereHas("siswa", function ($query) use ($idinstansi) {
                         $query->where("idinstansi", $idinstansi);
                     })->first();
@@ -98,8 +98,6 @@ class APIController extends Controller
                         continue;
                     }
 
-
-
                     //cek absensi hari ini ===========================================
                     $absen = absenM::with("siswa")
                     ->where("nisn", sprintf("%010s", $cekkartu->siswa->nisn))
@@ -108,7 +106,6 @@ class APIController extends Controller
                         ->where("idinstansi", $idinstansi);
                     })->where("tanggal", $tanggal);
 
-                    dd($absen);
                     // PROSES ========================================================
                     if($value->waktu < strtotime($hari)) {
                         if($absen->count() === 0) {
@@ -120,7 +117,6 @@ class APIController extends Controller
                         }
 
                     }else {
-                        dd($absen->count());
                         if($absen->count() === 0) {
                             $sendData["nisn"] = $cekkartu->siswa->nisn;
                             $sendData["tanggal"] = $tanggal;
