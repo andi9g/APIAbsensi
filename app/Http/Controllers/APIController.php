@@ -118,22 +118,22 @@ class APIController extends Controller
                         }
 
                     }else {
-                        dd("berhasil");
+
                         if($absen->count() === 0) {
                             $sendData["nisn"] = $cekkartu->siswa->nisn;
                             $sendData["tanggal"] = $tanggal;
                             $sendData["jamkeluar"] = date("H:i", $jamabsen);
 
-                            $send = absenM::create($sendData);
+                            absenM::create($sendData);
+                            dd("berhasil");
 
                         }else if(empty($absen->first()->jamkeluar)){
                             $sendData["jamkeluar"] = date("H:i", $jamabsen);
 
-                            $send = $absen->first()->update($sendData);
+                            $absen->first()->update($sendData);
                         }
                     }
 
-                    dd($send);
 
                 } //ini tutup foreach
 
