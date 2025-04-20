@@ -118,7 +118,7 @@ class APIController extends Controller
                         }
 
                     }else {
-
+                        dd($absen->count());
                         if($absen->count() === 0) {
                             $sendData["nisn"] = $cekkartu->siswa->nisn;
                             $sendData["tanggal"] = $tanggal;
