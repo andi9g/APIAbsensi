@@ -107,7 +107,7 @@ class APIController extends Controller
                     })->where("tanggal", $tanggal);
 
                     // PROSES ========================================================
-                    dd($absen);
+                    dd($absen->count());
                     $sendData = [];
                     if($value->waktu < strtotime($hari)) {
                         if($absen->count() === 0) {
