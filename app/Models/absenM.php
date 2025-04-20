@@ -11,10 +11,11 @@ class absenM extends Model
     protected $table = 'absen';
     protected $primaryKey = 'idabsen';
     protected $connection = 'mysql';
-    protected $fillable = ["nisn", "tanggal", "jammasuk", "jamkeluar", "idinsansi", "ket"];
+    protected $guarded = [];
 
     public function siswa()
     {
         return $this->hasOne(siswaM::class, 'nisn','nisn');
     }
+
 }
