@@ -104,7 +104,8 @@ class APIController extends Controller
                     ->whereHas("siswa", function ($query) use ($idinstansi) {
                         $query->from("siswa.siswa")
                         ->where("idinstansi", $idinstansi);
-                    })->where("tanggal", $tanggal);
+                    })->where("tanggal", $tanggal)
+                    ->select("absen.*");
 
                     // PROSES ========================================================
                     dd($absen->count());
