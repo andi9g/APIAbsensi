@@ -34,14 +34,14 @@ class APIController extends Controller
 
         // Cek apakah pascode cocok dengan yang ada di database
         if (!Hash::check($request->pascode, $alat->pascode)) {
-            return response()->json(['message' => 'error'], 401);
+            return response()->json(['message' => 'error2'], 401);
         }
 
         // Jika validasi berhasil, generate JWT
         try {
             $token = JWTAuth::fromUser($alat);
         } catch (JWTException $e) {
-            return response()->json(['message' => 'error'], 500);
+            return response()->json(['message' => 'error3'], 500);
         }
 
         return response()->json([
