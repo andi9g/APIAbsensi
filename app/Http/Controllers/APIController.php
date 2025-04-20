@@ -84,7 +84,7 @@ class APIController extends Controller
                 foreach ($data as $value) {
 
                     $jamabsen = $value->waktu;
-                    dd($value->uuid);
+
                     //CEK KARTU ======================================================
                     $cekkartu = kartupelajarM::with("siswa")
                     ->where("uuid", $value->uuid)
@@ -107,6 +107,7 @@ class APIController extends Controller
                         ->where("idinstansi", $idinstansi);
                     })->where("tanggal", $tanggal);
 
+                    dd($absen->count());
                     // PROSES ========================================================
                     if($value->waktu < strtotime($hari)) {
                         if($absen->count() === 0) {
