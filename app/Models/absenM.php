@@ -11,7 +11,7 @@ class absenM extends Model
     protected $table = 'absen';
     protected $primaryKey = 'idabsen';
     protected $connection = 'mysql';
-    protected $fillable = ["nisn", "tanggal", "jammasuk", "jamkeluar"];
+    protected $fillable = ["nisn", "tanggal", "jammasuk", "jamkeluar", "idinsansi", "ket"];
 
     public function siswa()
     {
