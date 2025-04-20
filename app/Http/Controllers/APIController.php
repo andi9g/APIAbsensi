@@ -61,7 +61,6 @@ class APIController extends Controller
     public function absensi(Request $request)
     {
 
-        try{
             $idinstansi = Auth::user()->idinstansi;
             $fungsi = Auth::user()->fungsi;
             $instansi = instansiM::where("idinstansi", $idinstansi)->count();
@@ -152,10 +151,6 @@ class APIController extends Controller
                 return response()->json(["message" => "Not Found"], 500);
 
             }
-
-        }catch(\Throwable $th){
-            return redirect()->back()->with('toast_error', 'Terjadi kesalahan');
-        }
 
 
 
