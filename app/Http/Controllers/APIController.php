@@ -128,8 +128,9 @@ class APIController extends Controller
                             $sendData["ket"] = "H";
                             $sendData["jamkeluar"] = date("H:i", $jamabsen);
 
-                            absenM::store($sendData);
+                            $absen = absenM::store($sendData);
 
+                            dd($absen);
 
                         }else if(empty($absen->first()->jamkeluar)){
                             $sendData["jamkeluar"] = date("H:i", $jamabsen);
