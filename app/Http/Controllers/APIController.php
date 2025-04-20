@@ -122,8 +122,6 @@ class APIController extends Controller
                             $sendData["tanggal"] = $tanggal;
                             $sendData["jamkeluar"] = date("H:i", $jamabsen);
 
-                            dd($sendData);
-
                             absenM::create($sendData);
 
 
