@@ -84,7 +84,7 @@ class APIController extends Controller
                 foreach ($data as $value) {
 
                     $jamabsen = $value->waktu;
-                    dd($value->uuid);
+
                     //CEK KARTU ======================================================
                     $cekkartu = kartupelajarM::with("siswa")
                     ->where("uuid", $value->uuid)
@@ -92,7 +92,7 @@ class APIController extends Controller
                         $query->where("idinstansi", $idinstansi);
                     })->first();
 
-
+                    dd($cekkartu);
                     if(is_null($cekkartu)) {
                         $err = $err + 1;
                         continue;
