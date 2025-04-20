@@ -118,12 +118,12 @@ class APIController extends Controller
                         }
 
                     }else {
-
+                        dd($absen->count());
                         if($absen->count() === 0) {
-                            // $sendData["nisn"] = sprintf("%010s", $cekkartu->siswa->nisn);
-                            // $sendData["tanggal"] = $tanggal;
-                            // $sendData["jamkeluar"] = date("H:i", $jamabsen);
-                            dd("brhasil");
+                            $sendData["nisn"] = sprintf("%010s", $cekkartu->siswa->nisn);
+                            $sendData["tanggal"] = $tanggal;
+                            $sendData["jamkeluar"] = date("H:i", $jamabsen);
+
                             absenM::create($sendData);
 
 
