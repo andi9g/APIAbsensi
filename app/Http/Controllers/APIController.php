@@ -104,14 +104,13 @@ class APIController extends Controller
                     ->whereHas("siswa", function ($query) use ($idinstansi) {
                         $query->from("siswa.siswa")
                         ->where("idinstansi", $idinstansi);
-                    })->where("tanggal", $tanggal)
-                    ->select("absen.*");
+                    })->where("tanggal", $tanggal);
 
                     // PROSES ========================================================
-                    dd($absen->count());
+
                     $sendData = [];
                     if($value->waktu < strtotime($hari)) {
-                        if($absen->count() === 0) {
+                        if($absen->get()->count() === 0) {
                             $sendData["nisn"] = sprintf("%010s", $cekkartu->siswa->nisn);
                             $sendData["tanggal"] = $tanggal;
                             $sendData["jammasuk"] = date("H:i", $jamabsen);
@@ -120,8 +119,7 @@ class APIController extends Controller
                         }
 
                     }else {
-                        dd($absen->count());
-                        if($absen->count() === 0) {
+                        if($absen->get()->count() === 0) {
                             $sendData["nisn"] = sprintf("%010s", $cekkartu->siswa->nisn);
                             $sendData["tanggal"] = $tanggal;
                             $sendData["jamkeluar"] = date("H:i", $jamabsen);
