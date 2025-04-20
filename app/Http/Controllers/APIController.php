@@ -109,7 +109,7 @@ class APIController extends Controller
                     // PROSES ========================================================
                     if($value->waktu < strtotime($hari)) {
                         if($absen->count() === 0) {
-                            $sendData["nisn"] = $cekkartu->siswa->nisn;
+                            $sendData["nisn"] = sprintf("%010s", $cekkartu->siswa->nisn);
                             $sendData["tanggal"] = $tanggal;
                             $sendData["jammasuk"] = date("H:i", $jamabsen);
 
@@ -117,8 +117,9 @@ class APIController extends Controller
                         }
 
                     }else {
+                        dd($absen);
                         if($absen->count() === 0) {
-                            $sendData["nisn"] = $cekkartu->siswa->nisn;
+                            $sendData["nisn"] = sprintf("%010s", $cekkartu->siswa->nisn);
                             $sendData["tanggal"] = $tanggal;
                             $sendData["jamkeluar"] = date("H:i", $jamabsen);
 
