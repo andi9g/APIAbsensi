@@ -105,10 +105,10 @@ class APIController extends Controller
                     ->where("tanggal", $tanggal);
 
                     // PROSES ========================================================
-                    dd($absen->get());
+
                     $sendData = [];
                     if($value->waktu < strtotime($hari)) {
-                        if($absen->get()->count() === 0) {
+                        if($absen->count() === 0) {
                             $sendData["nisn"] = sprintf("%010s", $cekkartu->siswa->nisn);
                             $sendData["tanggal"] = $tanggal;
                             $sendData["jammasuk"] = date("H:i", $jamabsen);
@@ -117,7 +117,7 @@ class APIController extends Controller
                         }
 
                     }else {
-                        if($absen->get()->count() === 0) {
+                        if($absen->count() === 0) {
                             $sendData["nisn"] = sprintf("%010s", $cekkartu->siswa->nisn);
                             $sendData["tanggal"] = $tanggal;
                             $sendData["jamkeluar"] = date("H:i", $jamabsen);
