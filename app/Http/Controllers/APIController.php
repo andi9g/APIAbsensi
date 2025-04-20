@@ -76,7 +76,7 @@ class APIController extends Controller
             $jsonData = $request->getContent();
             $data = json_decode($jsonData);
 
-            dd($instansi . $fungsi);
+            // dd($instansi . $fungsi);
 
             if($instansi === 1 && $fungsi == "absensi") {
                 $suc = 0;
