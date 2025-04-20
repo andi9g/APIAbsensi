@@ -101,10 +101,8 @@ class APIController extends Controller
                     //cek absensi hari ini ===========================================
                     $absen = absenM::with("siswa")
                     ->where("nisn", sprintf("%010s", $cekkartu->siswa->nisn))
-                    ->whereHas("siswa", function ($query) use ($idinstansi) {
-                        $query->from("siswa.siswa")
-                        ->where("idinstansi", $idinstansi);
-                    })->where("tanggal", $tanggal);
+                    ->where("idinstansi", $idinstansi)
+                    ->where("tanggal", $tanggal);
 
                     // PROSES ========================================================
                     dd($absen->get());
