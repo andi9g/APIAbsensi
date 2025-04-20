@@ -84,7 +84,7 @@ class APIController extends Controller
                 foreach ($data as $value) {
 
                     $jamabsen = $value->waktu;
-
+                    dd($value->uuid);
                     //CEK KARTU ======================================================
                     $cekkartu = kartupelajarM::with("siswa")
                     ->where("uuid", $value->uuid)
