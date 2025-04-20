@@ -99,16 +99,16 @@ class APIController extends Controller
                     }
 
 
-                    dd($cekkartu->siswa->nisn);
+
                     //cek absensi hari ini ===========================================
                     $absen = absenM::with("siswa")
-                    ->where("nisn", $cekkartu->siswa->nisn)
+                    ->where("nisn", sprintf("%010s", $cekkartu->siswa->nisn))
                     ->whereHas("siswa", function ($query) use ($idinstansi) {
                         $query->from("siswa.siswa")
                         ->where("idinstansi", $idinstansi);
                     })->where("tanggal", $tanggal);
 
-
+                    dd($absen);
                     // PROSES ========================================================
                     if($value->waktu < strtotime($hari)) {
                         if($absen->count() === 0) {
