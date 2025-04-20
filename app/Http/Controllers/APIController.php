@@ -95,6 +95,7 @@ class APIController extends Controller
 
                     if(is_null($cekkartu)) {
                         $err = $err + 1;
+                        dd($err);
                         continue;
                     }
 
