@@ -114,7 +114,7 @@ class APIController extends Controller
                             $sendData["tanggal"] = $tanggal;
                             $sendData["jammasuk"] = date("H:i", $jamabsen);
 
-                            absenM::create($sendData);
+                            $send = absenM::create($sendData);
                         }
 
                     }else {
@@ -123,15 +123,16 @@ class APIController extends Controller
                             $sendData["tanggal"] = $tanggal;
                             $sendData["jamkeluar"] = date("H:i", $jamabsen);
 
-                            absenM::create($sendData);
+                            $send = absenM::create($sendData);
+
                         }else if(empty($absen->first()->jamkeluar)){
                             $sendData["jamkeluar"] = date("H:i", $jamabsen);
 
-                            $absen->first()->update($sendData);
+                            $send = $absen->first()->update($sendData);
                         }
                     }
 
-
+                    dd($send);
 
                 } //ini tutup foreach
 
