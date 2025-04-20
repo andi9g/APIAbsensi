@@ -95,7 +95,6 @@ class APIController extends Controller
 
                     if(is_null($cekkartu)) {
                         $err = $err + 1;
-                        dd($err);
                         continue;
                     }
 
@@ -119,6 +118,7 @@ class APIController extends Controller
                         }
 
                     }else {
+                        dd("berhasil");
                         if($absen->count() === 0) {
                             $sendData["nisn"] = $cekkartu->siswa->nisn;
                             $sendData["tanggal"] = $tanggal;
