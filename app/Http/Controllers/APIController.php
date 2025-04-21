@@ -16,11 +16,12 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class APIController extends Controller
 {
-    public function login(Request $request2)
+    public function login(Request $request)
     {
-        $jsonData = $request2->getContent();
-        $data = json_decode($jsonData);
-        $request = $data[0];
+        $request->validate([
+            'kodealat'=>'required',
+            'pascode'=>'required',
+        ]);
 
 
         // Cari data alat berdasarkan kodealat
